@@ -1,0 +1,157 @@
+/* Style personnalisé pour les indicateurs de carrousel ronds */
+.carousel-indicators {
+    display: flex !important;
+    justify-content: center !important;
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    padding: 10px 20px !important;
+    gap: 15px !important;
+    z-index: 90 !important;
+    background-color: transparent !important; /* Arrière-plan transparent supprimé */
+    border-radius: 30px !important;
+    flex-wrap: nowrap !important; /* Toujours sur une ligne */
+    overflow-x: auto !important; /* Permet défilement horizontal si nécessaire */
+    -webkit-overflow-scrolling: touch !important; /* Défilement fluide sur iOS */
+    scrollbar-width: none !important; /* Masquer barre de défilement Firefox */
+    -ms-overflow-style: none !important; /* Masquer barre défilement IE/Edge */
+    max-width: 100% !important;
+}
+
+/* Masquer barre de défilement sur Chrome/Safari */
+.carousel-indicators::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Indicateurs en barres qui s'allongent - Spécificité augmentée */
+.carousel-indicators .carousel-indicator {
+    width: 30px !important;
+    height: 8px !important; /* Plus épais (8px au lieu de 4px) */
+    border-radius: 4px !important; /* Arrondi augmenté */
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    cursor: pointer !important;
+    transition: all 0.4s ease-in-out !important;
+    margin: 0 !important; /* Pas de marge horizontale supplémentaire */
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 5 !important;
+    flex-shrink: 0 !important; /* Empêche le rétrécissement */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important; /* Légère ombre */
+}
+
+.carousel-indicators .carousel-indicator:hover {
+    width: 40px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.carousel-indicators .carousel-indicator.active {
+    background-color: #f29d38 !important; /* Orange PayeSmart */
+    width: 60px !important;
+    box-shadow: 0 0 12px rgba(242, 157, 56, 0.8) !important;
+    transform: scale(1.05) !important;
+    border-radius: 4px !important;
+    position: relative !important;
+}
+
+/* Animation pour l'indicateur qui devient actif */
+.carousel-indicators .carousel-indicator.becoming-active {
+    animation: become-active 0.5s forwards !important;
+}
+
+/* Animation pour l'indicateur qui n'est plus actif */
+.carousel-indicators .carousel-indicator.becoming-inactive {
+    animation: become-inactive 0.5s forwards !important;
+}
+
+@keyframes become-active {
+    0% { 
+        width: 30px; 
+        background-color: rgba(255, 255, 255, 0.6); 
+        box-shadow: none;
+        transform: scale(1);
+    }
+    50% { 
+        width: 70px; 
+        background-color: rgba(242, 157, 56, 0.9); 
+        box-shadow: 0 0 12px rgba(242, 157, 56, 0.6);
+        transform: scale(1.08);
+    }
+    100% { 
+        width: 60px; 
+        background-color: #f29d38; 
+        box-shadow: 0 0 12px rgba(242, 157, 56, 0.8);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes become-inactive {
+    0% { 
+        width: 60px; 
+        background-color: #f29d38; 
+        box-shadow: 0 0 12px rgba(242, 157, 56, 0.8);
+        transform: scale(1.05);
+    }
+    50% { 
+        width: 40px; 
+        background-color: rgba(242, 157, 56, 0.5); 
+        box-shadow: 0 0 4px rgba(242, 157, 56, 0.3);
+        transform: scale(1.02);
+    }
+    100% { 
+        width: 30px; 
+        background-color: rgba(255, 255, 255, 0.6); 
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+/* Bouton de pause/lecture */
+.carousel-play-pause {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    cursor: pointer !important;
+    margin: 0 0 0 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.carousel-play-pause:hover {
+    transform: scale(1.15) !important;
+    background-color: #f29d38 !important;
+    box-shadow: 0 3px 8px rgba(242, 157, 56, 0.5) !important;
+}
+
+/* Icône de pause */
+.carousel-play-pause.paused::before {
+    content: "▶" !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    margin-left: 2px !important; /* Centrer visuellement */
+}
+
+/* Icône de lecture */
+.carousel-play-pause::before {
+    content: "❚❚" !important;
+    font-size: 10px !important;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Animation de pulse pour feedback visuel lors du clic */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.carousel-indicator.clicked {
+    animation: pulse 0.4s ease-in-out !important;
+}

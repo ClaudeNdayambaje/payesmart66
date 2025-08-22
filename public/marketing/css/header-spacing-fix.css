@@ -1,0 +1,60 @@
+/* 
+ * CORRECTION ESPACEMENT HEADER
+ * Correction des problèmes d'espacement dans la barre de menu
+ * Assure un espacement uniforme entre les éléments de navigation
+ * Date: Août 2025
+ */
+
+/* Harmonisation de l'espacement horizontal entre les éléments de navigation */
+.main-nav ul {
+    gap: 30px !important; /* Espacement standard entre les liens pour toutes les pages */
+}
+
+/* Harmonisation des marges sur les boutons pour toutes les pages */
+.header-buttons {
+    display: flex;
+    gap: 10px !important; /* Espacement standard entre les boutons */
+    margin-left: 15px !important; /* Espace standard à gauche des boutons */
+}
+
+/* Ajustement pour assurer que le header a une largeur minimale adéquate */
+.header-inner {
+    min-width: fit-content;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+/* Assurer que le conteneur principal a suffisamment d'espace */
+.header .container {
+    max-width: 1300px !important;
+    width: 100% !important;
+    padding: 0 25px !important;
+}
+
+/* Appliquer un padding cohérent pour toutes les pages */
+.header-inner {
+    padding: 0 20px !important;
+}
+
+/* Media query pour assurer la cohérence sur tablettes */
+@media (max-width: 992px) {
+    .main-nav ul {
+        gap: 20px !important;
+    }
+    
+    .header-buttons {
+        gap: 8px !important;
+        margin-left: 10px !important;
+    }
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; /* Le menu principal est caché sur mobile */
+    }
+    
+    .header-buttons {
+        margin-left: auto !important;
+    }
+}

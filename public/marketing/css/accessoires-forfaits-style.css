@@ -1,0 +1,368 @@
+/* 
+ * accessoires-forfaits-style.css
+ * Harmonisation du style des cartes d'accessoires avec les cartes de forfaits
+ * Date: 2025-08-17
+ * Mise à jour: 2025-08-18 - Refonte complète pour structure hardware-*
+ */
+
+/* 
+ * REFONTE COMPLÈTE DES CARTES ACCESSOIRES
+ * Ce fichier définit le style des cartes d'accessoires inspiré du design des cartes de forfaits
+ */
+
+/* ====================================================
+   1. GRILLE ET CARTES
+   ==================================================== */
+
+/* Filtres de catégorie */
+.filter-title {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.category-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding: 5px;
+    position: relative;
+    z-index: 10;
+}
+
+.category-filter button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #e0e0e0;
+    color: #333;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin: 0 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.category-filter button.active {
+    background-color: #4A90E2;
+    color: white;
+}
+
+.category-filter button:hover:not(.active) {
+    background-color: #d0d0d0;
+}
+
+/* Style CSS unifié pour les cartes d'accessoires et forfaits */
+
+/* Conteneur général des cartes */
+.accessoires-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Style de base pour les cartes */
+.accessoire-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.4s, background-color 0.3s;
+    cursor: pointer;
+    outline: 1px solid #374151;
+    border: none;
+    color: #F5F5F5;
+}
+
+.accessoire-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.accessoire-card:hover .accessoire-info {
+    background-color: #1A2330;
+}
+
+/* Badge de catégorie */
+.accessoire-category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Conteneur d'image */
+.accessoire-image {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.accessoire-image img {
+    width: 85%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    object-fit: contain;
+}
+
+/* Styles pour les différentes catégories */
+/* Fond noir/foncé par défaut pour toutes les catégories */
+.accessoire-image {
+    background: #222;
+}
+
+/* Image placeholder */
+.placeholder-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 2.2rem;
+}
+
+/* Bannière de prix */
+.accessoire-price-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    text-align: center;
+    color: white;
+    padding: 8px 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.accessoire-price-banner span:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+}
+
+.accessoire-price-banner span:last-child {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+/* Toutes les bannières de prix sont bleues */
+/* Les couleurs spécifiques par catégorie ont été supprimées */
+
+/* Bouton de vidéo */
+.video-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s;
+}
+
+.video-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Zone d'information */
+.accessoire-info {
+    background-color: #121820;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 15px 15px;
+    color: #F5F5F5;
+    border: none;
+}
+
+.accessoire-info h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.4rem;
+    color: #F5F5F5;
+    font-weight: 700;
+}
+
+.accessoire-description {
+    color: #F5F5F5;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    margin-top: 0;
+    flex-grow: 1;
+    line-height: 1.5;
+    padding: 0 10px;
+}
+
+/* Indicateur de statut */
+.accessoire-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #27ae60;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.accessoire-status i {
+    margin-right: 6px;
+}
+
+/* Styles des boutons */
+.accessoire-btn {
+    display: inline-block;
+    background-color: #F39C12;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.accessoire-btn:hover,
+.accessoire-info button.btn-primary:hover {
+    background-color: #E67E22;
+}
+
+.accessoire-info button.btn-primary i {
+    margin-right: 8px;
+}
+
+/* Styles pour la modale vidéo */
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.video-iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+}
+
+.video-modal-title {
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+    .accessoires-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .accessoires-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .accessoire-image {
+        min-height: 200px;
+    }
+    
+    .accessoire-price-banner span:first-child {
+        font-size: 2.4rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .accessoires-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .accessoire-image {
+        min-height: 180px;
+    }
+
+    .accessoire-info {
+        text-align: center;
+    }
+
+    .accessoire-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .accessoire-price-banner {
+        font-size: 1rem;
+    }
+    
+    /* Centrer les boutons sur mobile */
+    .btn-primary {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 200px;
+    }
+}

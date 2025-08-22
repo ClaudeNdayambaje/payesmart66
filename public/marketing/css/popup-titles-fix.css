@@ -1,0 +1,21 @@
+/* Correction des titres de popups sur fond noir */
+.features-section-title.custom-title {
+    position: relative;
+    color: white !important;
+    border-left: none !important; 
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background-color: #222;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Suppression du pseudo-élément pour éviter le doublon */
+.features-section-title.custom-title::before {
+    display: none;
+}
+
+/* Suppression complète des barres latérales */
+.features-section-title.custom-title::after {
+    display: none;
+}

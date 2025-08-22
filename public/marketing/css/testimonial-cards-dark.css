@@ -1,0 +1,14 @@
+/* Force les cartes de témoignage à avoir un fond gris foncé */
+.testimonial-card {
+    background-color: #222222 !important; 
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+}
+
+.testimonial-name {
+    color: #ffffff !important;
+}
+
+.testimonial-quote p {
+    color: #bbbbbb !important;
+}

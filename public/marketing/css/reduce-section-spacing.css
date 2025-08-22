@@ -1,0 +1,22 @@
+/* 
+ * Reduce Section Spacing - Réduction des espaces vides entre les sections
+ * Version 1.0 - Août 2025
+ */
+
+/* Réduction du padding de la section solution complète */
+.solution-complete-section {
+    padding-top: 55px !important; /* Ajusté de 40px à 55px */
+}
+
+/* Ajustements responsive */
+@media (max-width: 992px) {
+    .solution-complete-section {
+        padding-top: 45px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .solution-complete-section {
+        padding-top: 35px !important;
+    }
+}

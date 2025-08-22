@@ -1,0 +1,44 @@
+/* 
+ * Single Line Title - Force l'affichage des titres sur une seule ligne
+ * Version 1.0 - Août 2025
+ */
+
+/* Conteneur parent ajusté pour permettre l'affichage du titre */
+.produits-hero-content,
+.solution-complete-section .container {
+    width: 100% !important;
+    text-align: center !important;
+    overflow: visible !important;
+    max-width: 1400px !important; /* Élargir le conteneur */
+    margin: 0 auto !important;
+}
+
+/* Force le titre à s'afficher complètement sur une seule ligne */
+.solution-complete-section h1,
+.produits-hero-content h1 {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    width: auto !important; 
+    font-size: 2.1rem !important;
+    letter-spacing: -0.5px !important;
+    display: block !important;
+    text-align: center !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* Ajustement de la taille pour éviter que le texte ne soit trop large */
+@media (max-width: 768px) {
+    .solution-complete-section h1,
+    .produits-hero-content h1 {
+        font-size: 1.8rem !important; /* Taille réduite pour les écrans plus petits */
+    }
+}
+
+@media (max-width: 576px) {
+    .solution-complete-section h1,
+    .produits-hero-content h1 {
+        font-size: 1.4rem !important; /* Taille encore plus réduite pour les mobiles */
+    }
+}

@@ -1,0 +1,277 @@
+/* ====================================================
+   POPUP DÉTAIL ACCESSOIRE
+   ==================================================== */
+
+/* Overlay de fond */
+.accessoire-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.accessoire-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Contenu du popup */
+.accessoire-popup {
+    background: #ffffff;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    max-height: 90vh;
+}
+
+.accessoire-popup-overlay.active .accessoire-popup {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* En-tête du popup */
+.accessoire-popup-header {
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #1a365d, #2c5282);
+    color: white;
+}
+
+.accessoire-popup-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Contenu principal - structure en colonnes */
+.accessoire-popup-content {
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+    flex: 1;
+}
+
+/* Colonne gauche avec l'image */
+.accessoire-popup-image {
+    width: 40%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+}
+
+.accessoire-popup-image img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Colonne droite avec les détails */
+.accessoire-popup-details {
+    width: 60%;
+    padding: 30px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+/* Description du produit */
+.accessoire-popup-description {
+    margin-bottom: 25px;
+}
+
+.accessoire-popup-description h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.accessoire-popup-description p {
+    margin: 0 0 15px 0;
+    line-height: 1.7;
+    color: #4a5568;
+}
+
+/* Caractéristiques techniques */
+.accessoire-popup-specs {
+    margin-bottom: 25px;
+}
+
+.accessoire-popup-specs h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.accessoire-popup-specs ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.accessoire-popup-specs li {
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
+/* Prix et boutons d'action */
+.accessoire-popup-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.accessoire-popup-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c5282;
+}
+
+.accessoire-popup-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* Boutons */
+.accessoire-popup-add-to-cart {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #3182ce, #2b6cb0);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accessoire-popup-add-to-cart:hover {
+    background: linear-gradient(135deg, #2b6cb0, #2c5282);
+    transform: translateY(-2px);
+}
+
+.accessoire-popup-close {
+    padding: 12px 25px;
+    background: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.accessoire-popup-close:hover {
+    background: #cbd5e0;
+}
+
+/* Bouton de fermeture en X */
+.accessoire-popup-close-x {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.accessoire-popup-close-x:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animation d'entrée pour les éléments */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.accessoire-popup-header,
+.accessoire-popup-image,
+.accessoire-popup-details {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.accessoire-popup-header {
+    animation-delay: 0.1s;
+}
+
+.accessoire-popup-image {
+    animation-delay: 0.2s;
+}
+
+.accessoire-popup-details {
+    animation-delay: 0.3s;
+}
+
+/* Style pour les catégories */
+.accessoire-popup-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #ebf8ff;
+    color: #3182ce;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Adaptations pour mobile */
+@media (max-width: 768px) {
+    .accessoire-popup-content {
+        flex-direction: column;
+    }
+    
+    .accessoire-popup-image, 
+    .accessoire-popup-details {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .accessoire-popup-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .accessoire-popup-price {
+        margin-bottom: 15px;
+    }
+}

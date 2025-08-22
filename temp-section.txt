@@ -1,0 +1,43 @@
+<!-- Section Intégration et connectivité -->
+                <div class="feature-section" style="margin-bottom: 40px;">
+                    <h3 class="features-section-title custom-title" style="font-size: 1.6rem; margin-bottom: 25px; color: white; background-color: #222; padding: 10px 15px; border-radius: 5px; text-align: center; border-left: none; position: relative;">
+                        <span style="color: #F29D38; margin-right: 8px;"><i class="fas fa-plug"></i></span>Intégration et connectivité
+                    </h3>
+                    
+                    <p style="margin-bottom: 25px; line-height: 1.5; text-align: center;">Nos terminaux s'intègrent parfaitement à votre écosystème commercial existant :</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                        <!-- Intégration 1 -->
+                        <div class="integration-card" style="padding: 20px; border-radius: 8px; background-color: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.3);">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <div style="background-color: #3498db; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; margin-right: 15px;">
+                                    <i class="fas fa-cloud" style="color: white; font-size: 18px;"></i>
+                                </div>
+                                <h4 style="font-size: 1.2rem; margin: 0; color: #3498db;">Synchronisation cloud</h4>
+                            </div>
+                            <p style="margin: 0; line-height: 1.5;">Toutes les données sont automatiquement synchronisées et accessibles depuis n'importe quel appareil connecté.</p>
+                        </div>
+                        
+                        <!-- Intégration 2 -->
+                        <div class="integration-card" style="padding: 20px; border-radius: 8px; background-color: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.3);">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <div style="background-color: #2ecc71; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; margin-right: 15px;">
+                                    <i class="fas fa-sync" style="color: white; font-size: 18px;"></i>
+                                </div>
+                                <h4 style="font-size: 1.2rem; margin: 0; color: #2ecc71;">API ouvertes</h4>
+                            </div>
+                            <p style="margin: 0; line-height: 1.5;">Intégrez facilement nos terminaux à vos logiciels de comptabilité, CRM ou ERP existants.</p>
+                        </div>
+                        
+                        <!-- Intégration 3 -->
+                        <div class="integration-card" style="padding: 20px; border-radius: 8px; background-color: rgba(155, 89, 182, 0.1); border: 1px solid rgba(155, 89, 182, 0.3);">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <div style="background-color: #9b59b6; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; margin-right: 15px;">
+                                    <i class="fas fa-wifi" style="color: white; font-size: 18px;"></i>
+                                </div>
+                                <h4 style="font-size: 1.2rem; margin: 0; color: #9b59b6;">Connecté en permanence</h4>
+                            </div>
+                            <p style="margin: 0; line-height: 1.5;">Fonctionne en 4G/5G, WiFi ou Ethernet pour garantir une connexion stable en toutes circonstances.</p>
+                        </div>
+                    </div>
+                </div>

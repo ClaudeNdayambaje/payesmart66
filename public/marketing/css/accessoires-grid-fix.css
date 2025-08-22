@@ -1,0 +1,38 @@
+/*
+ * ACCESSOIRES GRID FIX
+ * Correctifs pour la grille d'affichage des accessoires
+ */
+
+/* Structure de base de la grille */
+.accessoires-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+/* Correction pour l'espacement des cards */
+.hardware-card {
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Assurer que l'image occupe la bonne proportion */
+.hardware-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+
+/* Assurer que les détails prennent l'espace restant */
+.hardware-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Positionner le bouton en bas */
+.hardware-details .btn-primary {
+    margin-top: auto;
+}

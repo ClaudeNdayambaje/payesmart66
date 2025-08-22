@@ -1,0 +1,65 @@
+/* Ajustement de l'espacement entre les titres h1 et la barre hero-divider en version mobile */
+@media (max-width: 768px) {
+    /* Ajustement spécifique pour le titre "Une solution complète pour votre commerce" */
+    .solution-complete-section h1 {
+        max-width: 100% !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        font-size: 42px !important;
+    }
+    
+    /* Style pour les spans de la première et seconde ligne */
+    .solution-complete-section h1 .first-line,
+    .solution-complete-section h1 .second-line {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    /* Styles pour les titres */
+    .produits-hero-content h1,
+    .about-hero-content h1,
+    .contact-hero-content h1,
+    section h1 {
+        margin-bottom: 15px !important;
+        padding-bottom: 8px !important;
+        font-size: 28px !important;
+        position: relative;
+    }
+    
+    /* Styles pour les barres de séparation */
+    .produits-hero-content .hero-divider,
+    .about-hero-content .hero-divider,
+    .contact-hero-content .hero-divider,
+    section .hero-divider {
+        margin-top: 3px !important; /* Espace entre le titre et la barre */
+        margin-bottom: 22px !important;
+        width: 120px !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, transparent, #3498db, transparent) !important;
+        position: relative;
+        display: block !important;
+        clear: both !important;
+    }
+}
+
+/* Ajustement spécifique pour les écrans très petits */
+@media (max-width: 480px) {
+    .produits-hero-content h1,
+    .about-hero-content h1,
+    .contact-hero-content h1,
+    section h1 {
+        font-size: 32px !important;
+        padding-bottom: 12px !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .produits-hero-content .hero-divider,
+    .about-hero-content .hero-divider,
+    .contact-hero-content .hero-divider,
+    section .hero-divider {
+        margin-top: 8px !important;
+        width: 100px !important;
+    }
+}

@@ -1,0 +1,48 @@
+/* 
+ * CORRECTION TAILLE DES TITRES DE SECTIONS
+ * Réduit la taille des titres h1 sur la page d'accueil
+ * Version 1.0 - Août 2025
+ * Ajout couleur orange pour sous-titre
+ */
+
+/* Ciblage spécifique des titres h1 dans les sections de la page d'accueil */
+.solution-complete-section h1,
+.pricing-section h1,
+.hardware-section h1,
+.why-us-section h1,
+.testimonials-section h1,
+.produits-hero-content h1,
+.why-choose-section h1 {
+    font-size: 2.2rem !important; /* Taille réduite (était 2.8rem) */
+    line-height: 1.2 !important;
+    margin-bottom: 15px;
+    color: #ffffff !important; /* Titre en blanc */
+}
+
+/* Ajustement responsive pour tablettes */
+@media (max-width: 992px) {
+    .solution-complete-section h1,
+    .pricing-section h1,
+    .hardware-section h1,
+    .why-us-section h1,
+    .testimonials-section h1,
+    .produits-hero-content h1,
+    .why-choose-section h1 {
+        font-size: 2rem !important;
+        color: #ffffff !important; /* Titre en blanc */
+    }
+}
+
+/* Ajustement responsive pour mobiles */
+@media (max-width: 576px) {
+    .solution-complete-section h1,
+    .pricing-section h1,
+    .hardware-section h1,
+    .why-us-section h1,
+    .testimonials-section h1,
+    .produits-hero-content h1,
+    .why-choose-section h1 {
+        font-size: 1.6rem !important;
+        color: #ffffff !important; /* Titre en blanc */
+    }
+}

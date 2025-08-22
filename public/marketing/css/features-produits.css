@@ -1,0 +1,134 @@
+/*
+ * FEATURES PRODUITS
+ * Styles pour les fonctionnalités des produits
+ */
+
+/* Icônes de fonctionnalités */
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #3498db;
+    font-size: 24px;
+}
+
+.feature-icon i {
+    font-size: 24px;
+}
+
+/* Carte de fonctionnalité */
+.feature-card {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    color: #2d3748;
+}
+
+.feature-card p {
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Grille de fonctionnalités */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+/* Fonctionnalités en liste */
+.features-list {
+    margin: 40px 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.feature-item-icon {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.feature-item-content {
+    flex: 1;
+}
+
+.feature-item h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: #2d3748;
+}
+
+.feature-item p {
+    margin: 0;
+    color: #718096;
+    line-height: 1.6;
+}
+
+/* Tableau de comparaison */
+.features-comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+}
+
+.features-comparison th,
+.features-comparison td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.features-comparison th {
+    background-color: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.features-comparison td {
+    color: #4a5568;
+}
+
+.features-comparison tr:hover {
+    background-color: #f8fafc;
+}
+
+.feature-check {
+    color: #38b2ac;
+    font-size: 18px;
+}
+
+.feature-x {
+    color: #e53e3e;
+    font-size: 18px;
+}

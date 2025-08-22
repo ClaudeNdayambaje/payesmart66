@@ -1,0 +1,156 @@
+/* 
+ * CORRECTIONS D'AFFICHAGE TABLETTE - SECTION SOLUTIONS
+ * Ce fichier corrige les problèmes d'affichage sur tablette pour la section solution-complete
+ * Version 1.0 - Août 2025
+ */
+
+/* Corrections spécifiques pour la section solution-complete en mode tablette */
+@media (min-width: 768px) and (max-width: 992px) {
+    /* Amélioration de l'espacement global */
+    .solution-complete-section {
+        padding: 50px 0 40px !important;
+    }
+    
+    /* Ajustement du conteneur pour éviter les débordements */
+    .solution-complete-section .container {
+        width: 100% !important;
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+        max-width: 100% !important;
+    }
+    
+    /* Correction des marges et du conteneur de solutions */
+    .solutions-container {
+        margin: 0 auto !important;
+        padding: 0 10px !important;
+        width: 100% !important;
+        max-width: 720px !important;
+    }
+    
+    /* Amélioration de la mise en page des rangées de solutions */
+    .solution-row {
+        flex-direction: column !important;
+        margin-bottom: 40px !important;
+    }
+    
+    /* Gestion correcte des images en mode tablette */
+    .solution-image {
+        width: 100% !important;
+        max-width: 450px !important;
+        margin: 0 auto 25px !important;
+    }
+    
+    /* Ajustement du contenu texte pour tablette */
+    .solution-content {
+        width: 100% !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+    
+    /* Centrage des features en mode tablette */
+    .solution-features {
+        justify-content: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Ajustement du CTA en bas de section */
+    .solutions-cta {
+        margin-top: 30px !important;
+        padding: 25px 20px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    
+    /* Espacement entre le texte et les boutons du CTA */
+    .solutions-cta .cta-buttons {
+        margin-top: 20px !important;
+    }
+    
+    /* Correction de l'alignement des titres */
+    .solution-complete-section h1,
+    .produits-hero-content h1 {
+        font-size: 1.9rem !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Correction de la couleur du sous-titre qui peut être masquée */
+    .solution-complete-section .subtitle {
+        color: #3498db !important; /* Couleur secondaire PaySmart - bleu */
+        padding: 0 15px !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    /* Correction de la position du hero-divider pour éviter qu'il passe au-dessus du texte */
+    .solution-complete-section .hero-divider,
+    .produits-hero-content .hero-divider {
+        position: relative !important;
+        margin: 15px auto 20px !important;
+        z-index: 1 !important;
+        display: block !important;
+        clear: both !important;
+    }
+}
+
+/* Corrections spécifiques pour les écarts entre mobile et tablette */
+@media (min-width: 577px) and (max-width: 767px) {
+    /* Ajustements similaires avec quelques modifications */
+    .solution-complete-section {
+        padding: 40px 0 30px !important;
+    }
+    
+    .solutions-container {
+        max-width: 540px !important;
+    }
+    
+    /* Réduction de la taille des images pour les formats intermédiaires */
+    .solution-image {
+        max-width: 380px !important;
+    }
+    
+    /* Ajustement du titre pour écrans intermédiaires */
+    .solution-complete-section h1,
+    .produits-hero-content h1 {
+        font-size: 1.7rem !important;
+        white-space: normal !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    /* Correction de la position du hero-divider pour écrans intermédiaires */
+    .solution-complete-section .hero-divider,
+    .produits-hero-content .hero-divider {
+        position: relative !important;
+        margin: 12px auto 18px !important;
+        z-index: 1 !important;
+    }
+}
+
+/* Assure que les popups fonctionnent correctement en mode tablette */
+@media (min-width: 768px) and (max-width: 992px) {
+    .features-popup-container {
+        width: 92% !important;
+        max-width: 700px !important;
+        margin: 25px auto !important;
+    }
+    
+    .features-popup-titles {
+        padding: 25px 25px 0 !important;
+    }
+    
+    .features-content {
+        padding: 0 25px 25px !important;
+    }
+    
+    /* Ajustement des titres dans les popups */
+    .features-popup-titles h2 {
+        font-size: 28px !important;
+    }
+    
+    .features-popup-titles h3 {
+        font-size: 20px !important;
+    }
+}

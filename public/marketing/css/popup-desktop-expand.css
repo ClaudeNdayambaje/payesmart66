@@ -1,0 +1,299 @@
+/* Agrandissement des popups en format desktop - Version plein écran */
+
+/* Styles pour s'assurer que les boutons fonctionnent correctement */
+#openFeaturesPopup, 
+#openTerminalsPopup, 
+#openBankingPopup {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Boutons de fermeture - rétablissement du style original */
+.features-popup-close {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: #000000 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    color: white !important;
+    font-size: 18px !important;
+    box-shadow: none !important;
+}
+
+.features-popup-close:hover {
+    background: #000000 !important;
+    transform: rotate(90deg) !important;
+}
+
+/* Styles spécifiques pour les très petits écrans (mobile) */
+@media (max-width: 479px) {
+    /* Force le plein écran même sur les très petits écrans */
+    .features-popup-overlay,
+    .features-popup-overlay[style],
+    div.features-popup-overlay,
+    .features-popup-overlay.active {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: rgba(0, 0, 0, 0.9) !important;
+    }
+    
+    /* Styles pour le container sur mobile */
+    .features-popup-container,
+    .features-popup-container[style],
+    .features-popup-container[style*="width"],
+    .features-popup-container[style*="margin"],
+    #terminalsPopupContainer,
+    #featuresPopupContainer,
+    #bankingPopupContainer {
+        position: absolute !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        margin: 0 !important;
+        padding: 20px 0 !important;
+        border-radius: 0 !important;
+        overflow: auto !important;
+    }
+    
+    /* Optimisation du contenu pour mobile */
+    .features-content,
+    .features-popup-container .features-content {
+        width: 100% !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+    }
+    
+    /* Ajustements typographiques pour mobile */
+    .features-popup-titles h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    .features-popup-titles h3 {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Styles spécifiques pour les formats intermédiaires entre mobile et tablette */
+@media (min-width: 480px) and (max-width: 767px) {
+    /* Style pour l'overlay du popup en plein écran aux tailles intermédiaires */
+    .features-popup-overlay,
+    .features-popup-overlay[style],
+    div.features-popup-overlay,
+    .features-popup-overlay.active {
+        display: flex !important;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 0 !important;
+        background-color: rgba(0, 0, 0, 0.85) !important;
+    }
+    
+    /* Styles pour le container aux tailles intermédiaires */
+    .features-popup-container,
+    .features-popup-container[style],
+    .features-popup-container[style*="width"],
+    .features-popup-container[style*="margin"],
+    #terminalsPopupContainer,
+    #featuresPopupContainer,
+    #bankingPopupContainer {
+        position: absolute !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 30px 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        overflow: auto !important;
+        left: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+    }
+    
+    /* Optimisation du contenu */
+    .features-content,
+    .features-popup-container .features-content {
+        width: 95% !important;
+        padding: 0 10px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Application du mode plein écran pour tablettes et desktop */
+@media (min-width: 768px) {
+    /* Style pour l'overlay du popup (conteneur externe) en plein écran */
+    .features-popup-overlay,
+    .features-popup-overlay[style],
+    div.features-popup-overlay,
+    .features-popup-overlay.active {
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: stretch !important;
+        padding: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    
+    /* Popups en plein écran - règles prioritaires avec sélecteurs renforcés */
+    .features-popup-container,
+    .features-popup-container[style],
+    .features-popup-container[style*="width"],
+    .features-popup-container[style*="max-width"],
+    .features-popup-container[style*="margin"],
+    .features-popup-overlay .features-popup-container,
+    .features-popup-overlay > .features-popup-container,
+    #featuresPopupContainer,
+    #terminalsPopupContainer,
+    #bankingPopupContainer,
+    div.features-popup-container,
+    .features-popup-overlay[class*="active"] .features-popup-container {
+        position: absolute !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        margin: 0 !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 50px 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        overflow: auto !important;
+        box-sizing: border-box !important;
+        transform: none !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+    }
+    
+    /* Optimisation du contenu pour l'affichage plein écran */
+    .features-content,
+    .features-popup-container .features-content {
+        padding: 0 5vw !important;
+        max-height: none !important;
+        overflow: visible !important;
+        width: 90% !important;
+        margin: 0 auto !important;
+        max-width: 1800px !important;
+    }
+    
+    /* Adaptation de la grille pour mieux utiliser l'espace horizontal */
+    .functionalities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)) !important;
+        gap: 30px !important;
+    }
+    
+    /* Ajustements spécifiques pour tablettes */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .functionalities-grid {
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 20px !important;
+        }
+        
+        .features-popup-container {
+            padding: 40px 0 !important;
+        }
+        
+        .features-content img {
+            max-height: 350px !important;
+        }
+    }
+    
+    /* Règles spécifiques pour résoudre les problèmes d'étirement à certaines tailles */
+    @media (min-width: 768px) and (max-width: 1200px) {
+        .features-popup-container[style],
+        .features-popup-container {
+            position: fixed !important;
+            inset: 0 !important; /* raccourci pour top, right, bottom, left */
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+        
+        .features-popup-overlay {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
+        
+        /* Annulation des marges inline spécifiques */
+        .features-popup-container[style*="margin"],
+        #featuresPopupContainer[style*="margin"],
+        #terminalsPopupContainer[style*="margin"],
+        #bankingPopupContainer[style*="margin"] {
+            margin: 0 !important;
+        }
+    }
+    
+    /* Plus d'espace pour les sections */
+    .feature-section {
+        margin-bottom: 60px !important;
+        padding: 0 20px !important;
+    }
+    
+    /* Amélioration de la visibilité des éléments clés */
+    .lead-text {
+        font-size: 1.25rem !important;
+        line-height: 1.8 !important;
+        color: #3498db !important;
+        margin-bottom: 50px !important;
+        max-width: 80% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* Plus d'espace entre les éléments du processus */
+    .process-flow {
+        margin: 50px 0 !important;
+        max-width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .process-step {
+        margin-bottom: 40px !important;
+    }
+    
+    /* Agrandissement des images */
+    .features-content img {
+        max-height: 450px !important;
+    }
+    
+    /* Amélioration de l'espacement des éléments de conclusion */
+    .conclusion-text {
+        margin: 50px 0 30px !important;
+        padding: 30px !important;
+    }
+    
+    /* Ajustements du CTA sticky */
+    .features-cta {
+        padding-top: 25px !important;
+        padding-bottom: 25px !important;
+        margin-top: 30px !important;
+    }
+}

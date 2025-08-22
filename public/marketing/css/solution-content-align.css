@@ -1,0 +1,31 @@
+/* 
+ * Solution Content Alignment - Alignement des contenus de solution
+ * Version 1.0 - Août 2025
+ */
+
+/* Alignement à gauche UNIQUEMENT sur desktop (> 992px) */
+@media (min-width: 993px) {
+    /* Alignement à gauche du contenu des solutions */
+    .solution-content {
+        text-align: left !important;
+    }
+
+    /* Titres des solutions alignés à gauche */
+    .solution-content .solution-title,
+    .solution-content h3 {
+        text-align: left !important;
+    }
+
+    /* Textes explicatifs alignés à gauche */
+    .solution-content .solution-description,
+    .solution-content p {
+        text-align: left !important;
+    }
+
+    /* Pour s'assurer que les fonctionnalités sont également bien alignées */
+    .solution-content .solution-features {
+        justify-content: flex-start !important;
+    }
+}
+
+/* Sur mobile et tablette, pas d'alignement à gauche forcé */

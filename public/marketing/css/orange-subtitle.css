@@ -1,0 +1,26 @@
+/* 
+ * Orange Subtitle - Ajoute la couleur orange pour les sous-titres spécifiques
+ * Version 1.0 - Août 2025
+ */
+
+/* Sous-titre en orange pour la section solution-complete */
+.solution-complete-section .subtitle,
+.produits-hero-content .subtitle {
+    color: #f89e28 !important; /* Orange PaySmart */
+    font-weight: 500 !important;
+}
+
+/* Ajustement responsive - maintien de la couleur orange sur tous les écrans */
+@media (max-width: 992px) {
+    .solution-complete-section .subtitle,
+    .produits-hero-content .subtitle {
+        color: #f89e28 !important; /* Orange PaySmart */
+    }
+}
+
+@media (max-width: 576px) {
+    .solution-complete-section .subtitle,
+    .produits-hero-content .subtitle {
+        color: #f89e28 !important; /* Orange PaySmart */
+    }
+}

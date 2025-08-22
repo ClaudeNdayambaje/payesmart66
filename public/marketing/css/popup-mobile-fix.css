@@ -1,0 +1,74 @@
+/* Correction du dimensionnement des popups sur mobile et tablette */
+.features-popup-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* Réglage de base */
+.features-popup-container {
+    width: 95% !important;
+    max-width: 1000px !important;
+    margin: 10px auto !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+}
+
+/* Pour les tablettes */
+@media (max-width: 991px) {
+    .features-popup-container {
+        width: 98% !important;
+        max-width: 800px !important;
+        margin: 10px auto !important;
+        border-radius: 12px !important;
+    }
+    
+    /* Amélioration du défilement */
+    .features-content {
+        padding: 0 10px !important;
+    }
+    
+    /* Adaptation de la grille */
+    .functionalities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important;
+        gap: 15px !important;
+    }
+}
+
+/* Pour les mobiles */
+@media (max-width: 576px) {
+    .features-popup-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+    }
+    
+    /* Mode plein écran sur mobile */
+    .features-popup-overlay {
+        padding: 0 !important;
+    }
+    
+    /* Amélioration du défilement et de l'espacement */
+    .features-content {
+        padding: 0 10px !important;
+    }
+    
+    /* Adaptation de la grille */
+    .functionalities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Titres plus petits sur mobile */
+    .features-popup-titles h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    .features-popup-titles h3 {
+        font-size: 1.2rem !important;
+    }
+}

@@ -1,0 +1,46 @@
+/* 
+ * RESPONSIVE ENHANCEMENTS
+ * Ajustements pour les différentes tailles d'écran
+ */
+
+/* Ajustements généraux pour mobiles */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .hardware-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .accessoires-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Tablettes */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hardware-grid,
+    .accessoires-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    .hardware-grid,
+    .accessoires-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+/* Très grands écrans */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
+    }
+}

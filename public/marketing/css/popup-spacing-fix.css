@@ -1,0 +1,64 @@
+/* 
+ * Optimisation des espacements pour les popups
+ * Ce fichier doit être chargé après tous les autres CSS pour garantir la priorité
+ */
+
+/* Optimisation de l'espace pour le popup Solution de Paiement */
+#bankingPopupContainer {
+    padding-top: 20px !important;
+}
+
+#bankingPopupContainer .features-popup-titles {
+    margin-bottom: 15px !important;
+}
+
+#bankingPopupContainer .features-popup-titles h2 {
+    margin-bottom: 5px !important;
+}
+
+#bankingPopupContainer .features-popup-titles .title-separator {
+    margin: 8px auto !important;
+}
+
+#bankingPopupContainer .lead-text {
+    margin-bottom: 20px !important;
+    line-height: 1.6 !important;
+}
+
+#bankingPopupContainer .feature-section {
+    margin-bottom: 40px !important;
+}
+
+#bankingPopupContainer #payment-terminal-image {
+    max-height: 300px !important;
+}
+
+#bankingPopupContainer .functionality-card {
+    padding: 12px !important;
+}
+
+#bankingPopupContainer .features-content > div > div {
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Réduction des marges pour les cartes de fonctionnalité */
+#bankingPopupContainer .functionality-description {
+    margin-top: 8px !important;
+    line-height: 1.5 !important;
+}
+
+#bankingPopupContainer .functionality-icon {
+    margin-right: 12px !important;
+}
+
+/* Optimisation des espacements pour les écrans plus petits */
+@media (max-width: 992px) {
+    #bankingPopupContainer .feature-section {
+        margin-bottom: 30px !important;
+    }
+    
+    #bankingPopupContainer .lead-text {
+        margin-bottom: 15px !important;
+    }
+}

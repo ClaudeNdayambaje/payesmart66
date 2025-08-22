@@ -1,0 +1,92 @@
+/*
+ * CUSTOM COLORS
+ * Définition des couleurs personnalisées pour le site
+ */
+
+:root {
+    /* Couleurs principales */
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --primary-light: #85c1e9;
+    
+    /* Couleurs secondaires */
+    --secondary: #F29D38;
+    --secondary-dark: #e67e22;
+    --secondary-light: #f8c471;
+    
+    /* Couleurs d'accent */
+    --accent-1: #9b59b6;
+    --accent-1-dark: #8e44ad;
+    --accent-2: #2ecc71;
+    --accent-2-dark: #27ae60;
+    
+    /* Couleurs de fond */
+    --bg-light: #f8f9fa;
+    --bg-dark: #222222;
+    --bg-card: #262626;
+    --bg-card-hover: #2B3441;
+    
+    /* Couleurs de texte */
+    --text-dark: #2d3748;
+    --text-light: #F5F5F5;
+    --text-muted: #aaaaaa;
+}
+
+/* Appliquer les couleurs aux différentes catégories */
+.category-scanner {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.category-imprimante-thermique {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+}
+
+.category-tiroir-caisse {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-1-dark));
+}
+
+.category-ecran {
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-2-dark));
+}
+
+.category-autre {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+/* Classes d'utilité pour les couleurs de texte */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+.text-light {
+    color: var(--text-light) !important;
+}
+
+.text-dark {
+    color: var(--text-dark) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Classes d'utilité pour les couleurs de fond */
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+
+.bg-dark {
+    background-color: var(--bg-dark) !important;
+}
+
+.bg-card {
+    background-color: var(--bg-card) !important;
+}

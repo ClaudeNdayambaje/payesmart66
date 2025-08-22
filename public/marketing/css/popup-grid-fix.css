@@ -1,0 +1,111 @@
+/* Fix pour l'affichage des cartes en ligne dans les popups sur desktop */
+
+/* Règles à très haute spécificité pour surcharger les autres styles */
+.features-popup-container .functionalities-grid,
+.features-popup-container div.functionalities-grid,
+#terminalsPopupContainer .functionalities-grid,
+#featuresPopupContainer .functionalities-grid,
+#bankingPopupContainer .functionalities-grid {
+    display: grid !important;
+    gap: 20px !important;
+    margin: 15px 0 !important;
+    width: 100% !important;
+}
+
+/* Spécifique aux écrans larges (desktop) - avec sélecteurs hautement spécifiques */
+@media (min-width: 992px) {
+    /* Sélecteurs extrêmement spécifiques pour garantir la priorité */
+    .features-popup-container .functionalities-grid,
+    div.features-popup-container div.functionalities-grid,
+    #terminalsPopupContainer .functionalities-grid,
+    #featuresPopupContainer .functionalities-grid,
+    #bankingPopupContainer .functionalities-grid,
+    .functionalities-grid[style] {
+        grid-template-columns: 1fr 1fr 1fr !important;
+        width: 100% !important;
+    }
+    
+    /* Compatible avec l'affichage plein écran */
+    /* Les règles de taille du conteneur sont supprimées pour éviter les conflits avec popup-desktop-expand.css */
+    
+    /* Réglage de la largeur du contenu */
+    .features-content,
+    .features-popup-container .features-content {
+        width: 90% !important;
+        max-width: 1100px !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+    }
+    
+    /* Forcer la bonne structure des cartes */
+    .functionality-card {
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        max-width: 100% !important;
+    }
+    
+    .functionality-card .functionality-description {
+        flex-grow: 1 !important;
+    }
+    
+    /* Couleur de la description plus claire pour améliorer la visibilité sur fond sombre */
+    .functionality-description {
+        color: #f0f0f0 !important;
+    }
+    
+    /* Style pour les titres des cartes */
+    .functionality-title {
+        color: #ffffff !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Styles spécifiques pour les cartes avec fond coloré */
+    .functionality-card[style*="background-color: rgba(242, 157, 56, 0.05)"],
+    .functionality-card[style*="background-color: rgba(52, 152, 219, 0.05)"] {
+        background-color: rgba(30, 30, 30, 0.85) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border-width: 4px !important;
+    }
+    
+    .functionality-card[style*="background-color: rgba(242, 157, 56, 0.05)"] .functionality-description,
+    .functionality-card[style*="background-color: rgba(52, 152, 219, 0.05)"] .functionality-description {
+        color: #ffffff !important;
+        text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+        font-weight: 400 !important;
+    }
+    
+    .functionality-card[style*="background-color: rgba(242, 157, 56, 0.05)"] .functionality-title,
+    .functionality-card[style*="background-color: rgba(52, 152, 219, 0.05)"] .functionality-title {
+        color: #ffffff !important;
+        text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
+        font-weight: 600 !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .lead-text {
+        color: #3498db !important;
+    }
+}
+
+/* Pour les tablettes - 2 colonnes avec sélecteurs très spécifiques */
+@media (min-width: 577px) and (max-width: 991px) {
+    .features-popup-container .functionalities-grid,
+    #terminalsPopupContainer .functionalities-grid,
+    #featuresPopupContainer .functionalities-grid,
+    #bankingPopupContainer .functionalities-grid,
+    .functionalities-grid[style] {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+/* Pour les mobiles - 1 colonne avec sélecteur très spécifique */
+@media (max-width: 576px) {
+    .features-popup-container .functionalities-grid,
+    #terminalsPopupContainer .functionalities-grid,
+    #featuresPopupContainer .functionalities-grid,
+    #bankingPopupContainer .functionalities-grid,
+    .functionalities-grid[style] {
+        grid-template-columns: 1fr !important;
+    }
+}

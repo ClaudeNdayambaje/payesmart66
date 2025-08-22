@@ -1,0 +1,23 @@
+/* 
+ * OVERLAY SOMBRE POUR LES IMAGES DU CAROUSEL HERO
+ * Ce fichier ajoutait un effet d'assombrissement sur les images du carousel
+ * pour améliorer la lisibilité du texte et des boutons
+ * (Désactivé pour montrer les images en pleine clarté)
+ */
+
+/* Overlay sombre désactivé */
+.hero-animated::before {
+    display: none; /* L'overlay est complètement désactivé */
+}
+
+/* S'assurer que le contenu du hero reste au-dessus de l'overlay */
+.hero-content {
+    position: relative;
+    z-index: 5; /* Plus élevé que l'overlay */
+}
+
+/* Ajustement pour les éléments de navigation du carousel */
+.carousel-indicators {
+    position: relative;
+    z-index: 6; /* Au-dessus de l'overlay pour rester cliquables */
+}

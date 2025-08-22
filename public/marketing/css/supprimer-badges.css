@@ -1,0 +1,47 @@
+/*
+ * SUPPRIMER BADGES
+ * Correctifs pour masquer ou ajuster les badges sur les cartes
+ */
+
+/* Masquer les badges de disponibilité */
+.availability-badge {
+    display: none !important;
+}
+
+/* Masquer les indicateurs de stock par défaut */
+.stock-indicator {
+    display: none !important;
+}
+
+/* Style pour badges qui doivent rester visibles */
+.special-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F29D38;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+/* Badges de promotion avec style amélioré */
+.promo-badge {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 5;
+    transform: rotate(5deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

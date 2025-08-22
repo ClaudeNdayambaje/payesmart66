@@ -1,0 +1,249 @@
+/* Section Téléchargement des Applications */
+.app-download-section {
+    background-color: #242424; /* Fond gris foncé harmonisé avec les autres sections */
+    overflow: hidden;
+    position: relative;
+    padding: 80px 0;
+    z-index: 1; /* Assure que la section est bien visible */
+    display: block !important; /* Force l'affichage */
+    color: #fff;
+}
+
+.app-platforms-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.app-platform-card {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 40px 30px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-platform-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(52, 152, 219, 0.1), transparent);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.app-platform-card:hover::before {
+    opacity: 1;
+}
+
+.app-platform-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(52, 152, 219, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.platform-icon {
+    font-size: 48px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.app-platform-card:hover .platform-icon {
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+.platform-features {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.platform-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.platform-feature i {
+    color: #3498db;
+    margin-right: 12px;
+}
+
+.app-mockups {
+    position: relative;
+    margin: 50px auto 0;
+    text-align: center;
+}
+
+.app-mockups img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.5s ease;
+}
+
+.app-mockups:hover img {
+    transform: scale(1.02);
+}
+
+.sync-badge {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.app-mockups:hover .sync-badge {
+    transform: translateX(-50%) translateY(-5px);
+    background: rgba(52, 152, 219, 1);
+}
+
+.app-benefits {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.app-benefit {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.app-benefit:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 40px;
+    color: #3498db;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.app-benefit:hover .benefit-icon {
+    transform: scale(1.1);
+}
+
+.app-cta {
+    text-align: center;
+    margin: 60px 0 20px;
+}
+
+.app-cta .btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-cta .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.app-cta .btn i {
+    margin-left: 12px;
+    transition: transform 0.3s ease;
+}
+
+.app-cta .btn:hover i {
+    transform: translateX(5px);
+}
+
+.app-platform-card .btn i {
+    margin-right: 12px;
+    transition: transform 0.3s ease;
+}
+
+.app-platform-card .btn:hover i {
+    transform: translateY(-2px);
+}
+
+/* Éléments graphiques décoratifs */
+.bg-decorative-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52,152,219,0.2) 0%, rgba(52,152,219,0) 70%);
+    opacity: 0.8;
+}
+
+.bg-circle-top {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -100px;
+}
+
+.bg-circle-bottom {
+    width: 800px;
+    height: 800px;
+    bottom: -300px;
+    right: -200px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .app-platforms-container {
+        gap: 30px;
+    }
+    
+    .app-platform-card {
+        min-width: 100%;
+    }
+    
+    .sync-badge {
+        padding: 10px 20px;
+        font-size: 14px;
+        white-space: normal;
+        max-width: 90%;
+        text-align: center;
+    }
+}
