@@ -238,7 +238,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-md overflow-hidden max-h-[90vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-md xl:max-w-sm xl:max-h-[80vh] overflow-hidden max-h-[90vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
 
         <div className="flex items-center justify-between mb-4 transition-all duration-300">
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">Paiement</h2>
