@@ -1117,8 +1117,8 @@ function App() {
       <div className="flex h-screen app-background" id="main-app-container">
         {/* Assure que les thèmes sont correctement appliqués à tous les composants */}
         <ThemeObserver excludeLoginPage={true} />
-        {/* Sidebar masquée en mobile, visible uniquement sur desktop */}
-        <div className="hidden md:block">
+        {/* Sidebar masquée en mobile et tablette, visible uniquement sur desktop */}
+        <div className="hidden lg:block">
           <Sidebar
             activeView={activeView}
             onViewChange={handleViewChange}
@@ -1128,8 +1128,8 @@ function App() {
           />
         </div>
 
-        {/* Header mobile persistant sur toutes les pages */}
-        <div className="md:hidden bg-gradient-to-r from-slate-800 to-slate-700 dark:from-gray-900 dark:to-gray-800 px-4 py-2 shadow-lg fixed top-0 left-0 right-0 z-30">
+        {/* Header mobile et tablette persistant sur toutes les pages */}
+        <div className="lg:hidden bg-gradient-to-r from-slate-800 to-slate-700 dark:from-gray-900 dark:to-gray-800 px-4 py-2 shadow-lg fixed top-0 left-0 right-0 z-30">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -1266,7 +1266,7 @@ function App() {
         {activeView === 'pos' ? (
           <div className="flex-1 h-full relative">
             {/* Version desktop avec panier fixe à droite */}
-            <div className="hidden md:flex h-full">
+            <div className="hidden lg:flex h-full">
               <div className="flex-grow overflow-auto content-background" style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-text)' }} id="main-content-area">
                 <div className="p-4 md:p-6">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4 md:gap-0">
@@ -1319,8 +1319,8 @@ function App() {
               </div>
             </div>
             
-            {/* Version mobile professionnelle pour vendeurs */}
-            <div className="flex flex-col h-full md:hidden pt-16">
+            {/* Version mobile et tablette professionnelle pour vendeurs */}
+            <div className="flex flex-col h-full lg:hidden pt-16">
               {/* Grille de produits avec style professionnel */}
               <div className="flex-1 overflow-auto" style={{ backgroundColor: 'var(--color-background)' }}>
                 <div className="p-4">
@@ -1337,44 +1337,41 @@ function App() {
               {/* Panier fixe professionnel en bas */}
               <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t-2 border-slate-200 dark:border-gray-600 shadow-2xl">
                 {cartItems.length > 0 ? (
-                  <div className="px-2 sm:px-4 py-3 sm:py-4">
-                    {/* Résumé du panier */}
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0 sm:justify-between mb-3">
-                      <button 
-                        className="flex items-center gap-2 sm:gap-4 flex-1 sm:mr-4 p-3 sm:p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                        onClick={() => setShowMobileCart(!showMobileCart)}
-                      >
-                        <div className="relative">
-                          <div className="bg-slate-100 dark:bg-gray-700 p-2 sm:p-3 rounded-full">
-                            <ShoppingCart size={20} className="text-slate-600 dark:text-gray-300 sm:w-6 sm:h-6" />
+                  <div className="p-0">
+                    {/* Résumé du panier - Style inspiré de la photo */}
+                    <div className="flex items-stretch h-16">
+                      {/* Section gauche - Prix et icône panier */}
+                      <div className="flex-1 flex items-center bg-gradient-to-b from-slate-800 to-slate-700 dark:from-gray-900 dark:to-gray-800 px-4">
+                        <button 
+                          className="flex items-center gap-3 w-full h-full"
+                          onClick={() => setShowMobileCart(!showMobileCart)}
+                        >
+                          <div className="relative">
+                            <ShoppingCart size={24} className="text-white" />
+                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                              {cartItems.length}
+                            </span>
                           </div>
-                          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs sm:text-sm rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center font-bold">
-                            {cartItems.length}
-                          </span>
-                        </div>
-                        <div className="flex-1 text-center sm:text-left">
-                          <div className="text-base sm:text-base text-gray-500 dark:text-gray-400">Total</div>
-                          <div className="text-2xl sm:text-2xl font-bold text-gray-800 dark:text-white">
-                            {cartItems.reduce((sum, item) => sum + calculatePromotionalPrice(item.product, item.quantity), 0).toFixed(2)} €
+                          <div className="flex-1 text-left">
+                            <div className="text-white text-2xl font-bold">
+                              ${cartItems.reduce((sum, item) => sum + calculatePromotionalPrice(item.product, item.quantity), 0).toFixed(2)}
+                            </div>
                           </div>
-                        </div>
-                        <div className="ml-auto">
-                          <div className={`transform transition-transform text-base sm:text-lg ${showMobileCart ? 'rotate-180' : ''}`}>
-                            ▲
+                          <div className="text-white">
+                            <div className={`transform transition-transform ${showMobileCart ? 'rotate-180' : ''}`}>
+                              ▲
+                            </div>
                           </div>
-                        </div>
-                      </button>
+                        </button>
+                      </div>
                       
-                      {/* Bouton de paiement professionnel */}
+                      {/* Section droite - Bouton de paiement */}
                       <button
                         onClick={handleCheckout}
                         disabled={cartItems.length === 0}
-                        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 sm:py-5 px-8 sm:px-14 rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
+                        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold px-8 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 min-w-[120px]"
                       >
-                        <div className="flex items-center gap-2">
-                          <span>PAYER</span>
-                          <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                        </div>
+                        <span className="text-lg">PAYER</span>
                       </button>
                     </div>
                     
@@ -1392,12 +1389,13 @@ function App() {
                             return (
                               <div 
                                 key={`${item.product.id}-mobile`} 
-                                className={`bg-[color:var(--color-card-bg)] rounded-lg p-2 ${
+                                className={`bg-[color:var(--color-card-bg)] rounded-xl p-4 shadow-sm ${
                                   isLowStock ? 'border-l-4 border-[color:var(--color-error)]' : ''
                                 }`}
                               >
-                                <div className="flex items-start gap-2">
-                                  <div className="w-10 h-10 rounded-md overflow-hidden bg-[color:var(--color-background-alt)] flex-shrink-0">
+                                {/* En-tête avec image et infos produit */}
+                                <div className="flex items-center gap-4 mb-4">
+                                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-[color:var(--color-background-alt)] flex-shrink-0 shadow-sm">
                                     {item.product.image ? (
                                       <img 
                                         src={item.product.image} 
@@ -1406,66 +1404,71 @@ function App() {
                                       />
                                     ) : (
                                       <div className="w-full h-full flex items-center justify-center bg-[color:var(--color-background-alt)]">
-                                        <Tag className="text-[color:var(--color-text-secondary)]" size={16} />
+                                        <Tag className="text-[color:var(--color-text-secondary)]" size={24} />
                                       </div>
                                     )}
                                   </div>
                                   
                                   <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col">
-                                      <h3 className="text-sm font-medium text-[color:var(--color-text)] truncate mb-1">
-                                        {item.product.name}
-                                      </h3>
-                                      <div className="flex flex-col text-xs text-[color:var(--color-text-secondary)]">
-                                        <span>{item.product.price.toFixed(2)} € × {item.quantity}</span>
-                                      </div>
+                                    <h3 className="text-lg font-semibold text-[color:var(--color-text)] truncate mb-1">
+                                      {item.product.name}
+                                    </h3>
+                                    <div className="text-sm text-[color:var(--color-text-secondary)] mb-2">
+                                      {item.product.price.toFixed(2)} € × {item.quantity}
                                     </div>
                                     
                                     {hasPromotion && discount > 0 && (
-                                      <div className="flex items-center gap-1 text-xs text-[color:var(--color-success)] mt-1">
-                                        <Tag size={12} />
+                                      <div className="flex items-center gap-1 text-sm text-[color:var(--color-success)]">
+                                        <Tag size={14} />
                                         <span>Économie: {discount.toFixed(2)} €</span>
                                       </div>
                                     )}
                                     
                                     {isLowStock && (
-                                      <div className="flex items-center gap-1 text-xs text-[color:var(--color-error)] mt-1">
-                                        <AlertTriangle size={12} />
+                                      <div className="flex items-center gap-1 text-sm text-[color:var(--color-error)]">
+                                        <AlertTriangle size={14} />
                                         <span>Stock insuffisant ({item.product.stock} disponible)</span>
                                       </div>
                                     )}
                                   </div>
+                                  
+                                  {/* Prix total en évidence */}
+                                  <div className="text-right">
+                                    <div className="text-xl font-bold text-[color:var(--color-text)] dark:text-[#f6941c]">
+                                      {promotionalPrice.toFixed(2)} €
+                                    </div>
+                                  </div>
                                 </div>
                                 
-                                <div className="flex justify-between items-center mt-2 gap-2">
-                                  <div className="flex items-center gap-1">
+                                {/* Contrôles de quantité et suppression */}
+                                <div className="flex items-center justify-between bg-[color:var(--color-background-alt)] rounded-xl p-3">
+                                  <div className="flex items-center gap-3">
                                     <button
                                       onClick={() => handleUpdateQuantity(item.product.id, item.quantity - 1)}
                                       disabled={item.quantity <= 1}
-                                      className="p-1 rounded bg-[color:var(--color-background-alt)] text-[color:var(--color-text)] disabled:opacity-50 hover:bg-[color:var(--color-secondary-alt)]"
+                                      className="w-12 h-12 rounded-xl bg-white dark:bg-gray-700 text-[color:var(--color-text)] disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-gray-600 flex items-center justify-center shadow-sm transition-all"
                                     >
-                                      <ChevronDown size={14} />
+                                      <ChevronDown size={20} />
                                     </button>
-                                    <span className="w-8 text-center text-sm text-[color:var(--color-text)]">{item.quantity}</span>
+                                    
+                                    <div className="w-16 text-center">
+                                      <span className="text-xl font-bold text-[color:var(--color-text)]">{item.quantity}</span>
+                                    </div>
+                                    
                                     <button
                                       onClick={() => handleUpdateQuantity(item.product.id, item.quantity + 1)}
-                                      className="p-1 rounded bg-[color:var(--color-background-alt)] text-[color:var(--color-text)] hover:bg-[color:var(--color-secondary-alt)]"
+                                      className="w-12 h-12 rounded-xl bg-white dark:bg-gray-700 text-[color:var(--color-text)] hover:bg-gray-50 dark:hover:bg-gray-600 flex items-center justify-center shadow-sm transition-all"
                                     >
-                                      <ChevronUp size={14} />
+                                      <ChevronUp size={20} />
                                     </button>
                                   </div>
                                   
-                                  <div className="flex items-center gap-2">
-                                    <span className="font-medium text-sm text-[color:var(--color-text)] dark:text-[#f6941c]">
-                                      {promotionalPrice.toFixed(2)} €
-                                    </span>
-                                    <button
-                                      onClick={() => handleRemoveItem(item.product.id)}
-                                      className="p-1 rounded-full hover:bg-[color:var(--color-error)]/30 text-[color:var(--color-error)]"
-                                    >
-                                      <Trash2 size={14} />
-                                    </button>
-                                  </div>
+                                  <button
+                                    onClick={() => handleRemoveItem(item.product.id)}
+                                    className="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50 text-red-500 dark:text-red-400 flex items-center justify-center transition-all"
+                                  >
+                                    <Trash2 size={20} />
+                                  </button>
                                 </div>
                               </div>
                             );
@@ -1474,20 +1477,13 @@ function App() {
                       </div>
                     )}
                     
-                    {/* Barre de progression visuelle */}
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
-                      <div 
-                        className="bg-gradient-to-r from-orange-400 to-orange-500 h-1 rounded-full transition-all duration-300"
-                        style={{ width: cartItems.length > 0 ? '100%' : '0%' }}
-                      ></div>
-                    </div>
                   </div>
                 ) : (
-                  <div className="px-4 py-6 text-center">
-                    <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                      <ShoppingCart size={20} className="text-gray-400" />
+                  <div className="px-4 py-3 text-center">
+                    <div className="bg-gray-100 dark:bg-gray-700 p-2 rounded-full w-10 h-10 mx-auto mb-1 flex items-center justify-center">
+                      <ShoppingCart size={16} className="text-gray-400" />
                     </div>
-                    <div className="text-gray-500 dark:text-gray-400 text-sm">
+                    <div className="text-gray-500 dark:text-gray-400 text-xs">
                       Panier vide - Sélectionnez des produits
                     </div>
                   </div>
