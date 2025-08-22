@@ -302,7 +302,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-md xl:max-w-sm xl:max-h-[80vh] overflow-hidden max-h-[90vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-lg xl:max-w-md overflow-y-auto max-h-[95vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
 
         <div className="flex items-center justify-between mb-4 transition-all duration-300">
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">Paiement</h2>
@@ -410,8 +410,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                   </button>
                 )}
                 
-                <div className="bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-900/20 dark:to-gray-800 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300">
-                  <div className="flex justify-between mb-3">
+                <div className="bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-900/20 dark:to-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300">
+                  <div className="flex justify-between items-center">
                     <span className="text-gray-700 dark:text-gray-300 font-medium text-lg transition-all duration-300">Net à payer</span>
                     <span className="font-bold text-xl transition-all duration-300" style={{ color: colors.primary }}>{finalTotal.toFixed(2)} €</span>
                   </div>
@@ -420,7 +420,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 {qrScannerActive ? (
                   <div className="text-center py-6 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-blue-200 dark:border-blue-800/50 shadow-sm transition-all duration-300">
                     <div className="mb-6">
-                      <div className="relative mx-auto w-64 h-48 bg-black rounded-lg overflow-hidden">
+                      <div className="relative mx-auto w-80 h-60 bg-black rounded-lg overflow-hidden">
                         <video 
                           ref={videoRef}
                           autoPlay 
@@ -429,26 +429,26 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 border-2 border-blue-500 rounded-lg">
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-blue-500 rounded-lg animate-pulse"></div>
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-2 border-blue-500 rounded-lg animate-pulse"></div>
                         </div>
                       </div>
                     </div>
-                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-xs mx-auto transition-all duration-300 mb-4">Pointez la caméra vers le QR code de paiement</p>
+                    <p className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-sm mx-auto transition-all duration-300 mb-4 text-sm">Pointez la caméra vers le QR code de paiement</p>
                     
-                    <div className="flex gap-3 justify-center">
+                    <div className="flex gap-2 justify-center flex-wrap">
                       <button
                         onClick={() => {
                           // Simuler la détection d'un QR code pour test
                           processQRPayment('DEMO_QR_PAYMENT_' + Date.now());
                         }}
-                        className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all duration-300 text-sm"
+                        className="px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all duration-300 text-xs font-medium"
                       >
                         Simuler QR détecté
                       </button>
                       <button
                         onClick={stopQRScanner}
-                        className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all duration-300 text-sm"
+                        className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all duration-300 text-xs font-medium"
                       >
                         Annuler
                       </button>
@@ -497,8 +497,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                         <QrCode size={64} className="mx-auto transition-all duration-300" style={{ color: colors.accent }} />
                       </div>
                     </div>
-                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-xs mx-auto transition-all duration-300 mb-4">Activez la caméra pour scanner un QR code de paiement</p>
+                    <p className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-sm mx-auto transition-all duration-300 mb-4 text-sm leading-relaxed">Activez la caméra pour scanner un QR code de paiement mobile (Apple Pay, Google Pay, etc.)</p>
                     
                     <button
                       onClick={startQRScanner}
