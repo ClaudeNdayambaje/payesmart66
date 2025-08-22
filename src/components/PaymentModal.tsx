@@ -302,7 +302,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-lg xl:max-w-md overflow-y-auto max-h-[95vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-lg 2xl:max-w-lg overflow-y-auto max-h-[95vh] p-6 text-left align-middle relative z-50 transition-all duration-300">
 
         <div className="flex items-center justify-between mb-4 transition-all duration-300">
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">Paiement</h2>
@@ -420,7 +420,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 {qrScannerActive ? (
                   <div className="text-center py-6 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-blue-200 dark:border-blue-800/50 shadow-sm transition-all duration-300">
                     <div className="mb-6">
-                      <div className="relative mx-auto w-80 h-60 bg-black rounded-lg overflow-hidden">
+                      <div className="relative mx-auto w-full max-w-sm h-64 bg-black rounded-lg overflow-hidden">
                         <video 
                           ref={videoRef}
                           autoPlay 
@@ -429,7 +429,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 border-2 border-blue-500 rounded-lg">
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-2 border-blue-500 rounded-lg animate-pulse"></div>
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-blue-500 rounded-lg animate-pulse"></div>
                         </div>
                       </div>
                     </div>
