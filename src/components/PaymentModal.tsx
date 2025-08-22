@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Banknote, CreditCard, Receipt, Calculator, Award, ChevronLeft, AlertCircle, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Banknote, CreditCard, Receipt, Calculator, Award, ChevronLeft, AlertCircle, CheckCircle, QrCode, Camera } from 'lucide-react';
 import { LoyaltyCard } from '../types';
 import { useTheme } from '../contexts/ThemeContext';
 import vivaPaymentsService from '../services/vivaPaymentsService';
@@ -7,7 +7,7 @@ import vivaPaymentsService from '../services/vivaPaymentsService';
 interface PaymentModalProps {
   total: number;
   onClose: () => void;
-  onPaymentComplete: (method: 'cash' | 'card', amountReceived: number) => void;
+  onPaymentComplete: (method: 'cash' | 'card' | 'qr', amountReceived: number) => void;
   onShowLoyaltyCard: () => void;
   selectedLoyaltyCard?: LoyaltyCard;
   loyaltyDiscount: number;
@@ -39,7 +39,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   // Utiliser les couleurs du thème ou les couleurs par défaut si non disponibles
   const themeColors = colors || defaultColors;
   
-  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card' | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card' | 'qr' | null>(null);
   const [cashReceived, setCashReceived] = useState<string>('');
   const [showChange, setShowChange] = useState(false);
   const [showChangeDetails, setShowChangeDetails] = useState(false);
@@ -49,6 +49,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   // États pour le paiement Viva
   const [vivaPaymentStatus, setVivaPaymentStatus] = useState<'terminal_ready' | 'processing' | 'success' | 'error'>('terminal_ready');
   const [vivaPaymentError, setVivaPaymentError] = useState<string | null>(null);
+
+  // États pour le paiement QR
+  const [qrScannerActive, setQrScannerActive] = useState(false);
+  const [qrScanResult, setQrScanResult] = useState<string | null>(null);
+  const [qrError, setQrError] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
 
   // Fonction pour obtenir le style du badge en fonction du niveau de fidélité
   const getTierBadgeStyle = (tier: string) => {
@@ -83,6 +90,54 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   };
 
   const finalTotal = total * (1 - loyaltyDiscount);
+
+  // Fonctions pour le scanner QR
+  const startQRScanner = async () => {
+    try {
+      setQrError(null);
+      setQrScannerActive(true);
+      
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' } // Caméra arrière préférée
+      });
+      
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (error) {
+      console.error('Erreur d\'accès à la caméra:', error);
+      setQrError('Impossible d\'accéder à la caméra. Vérifiez les permissions.');
+      setQrScannerActive(false);
+    }
+  };
+
+  const stopQRScanner = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    setQrScannerActive(false);
+    setQrScanResult(null);
+    setQrError(null);
+  };
+
+  const processQRPayment = (qrData: string) => {
+    try {
+      // Simuler le traitement du QR code
+      console.log('QR Code détecté:', qrData);
+      setQrScanResult(qrData);
+      stopQRScanner();
+      
+      // Simuler un délai de traitement
+      setTimeout(() => {
+        onPaymentComplete('qr', finalTotal);
+      }, 1500);
+    } catch (error) {
+      console.error('Erreur de traitement QR:', error);
+      setQrError('Erreur lors du traitement du QR code');
+    }
+  };
 
   const handleCashPayment = (amount: number) => {
     if (amount >= finalTotal) {
@@ -128,6 +183,15 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
       confirmVivaPayment();
     }
   }, [paymentMethod]);
+
+  // Nettoyer les ressources lors de la fermeture
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
 
   const change = cashReceived ? parseFloat(cashReceived) - finalTotal : 0;
 
@@ -279,7 +343,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
 
               <p className="text-center text-gray-600 font-medium mb-2">Choisissez votre mode de paiement</p>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-3">
                 <button
                   onClick={() => {
                     setPaymentMethod('cash');
@@ -292,8 +356,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                     color: colors.success
                   }}
                 >
-                  <Banknote size={32} />
-                  <span className="font-medium">Espèces</span>
+                  <Banknote size={28} />
+                  <span className="font-medium text-sm">Espèces</span>
                 </button>
 
                 <button
@@ -309,13 +373,145 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                     color: colors.primary
                   }}
                 >
-                  <CreditCard size={32} />
-                  <span className="font-medium">Carte bancaire</span>
+                  <CreditCard size={28} />
+                  <span className="font-medium text-sm">Carte bancaire</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setPaymentMethod('qr');
+                    startQRScanner();
+                  }}
+                  className="py-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-all duration-300 relative z-10 border hover:opacity-90"
+                  style={{
+                    backgroundColor: `${colors.accent}15`,
+                    borderColor: `${colors.accent}30`,
+                    color: colors.accent
+                  }}
+                >
+                  <QrCode size={28} />
+                  <span className="font-medium text-sm">QR Code</span>
                 </button>
               </div>
             </div>
           ) : (
-            paymentMethod === 'cash' ? (
+            paymentMethod === 'qr' ? (
+              <div className="space-y-6">
+                {paymentMethod && (
+                  <button 
+                    onClick={() => {
+                      setPaymentMethod(null);
+                      stopQRScanner();
+                    }} 
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mb-2 transition-all duration-300"
+                  >
+                    <ChevronLeft size={20} />
+                    <span>Retour aux modes de paiement</span>
+                  </button>
+                )}
+                
+                <div className="bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-900/20 dark:to-gray-800 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300">
+                  <div className="flex justify-between mb-3">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium text-lg transition-all duration-300">Net à payer</span>
+                    <span className="font-bold text-xl transition-all duration-300" style={{ color: colors.primary }}>{finalTotal.toFixed(2)} €</span>
+                  </div>
+                </div>
+
+                {qrScannerActive ? (
+                  <div className="text-center py-6 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-blue-200 dark:border-blue-800/50 shadow-sm transition-all duration-300">
+                    <div className="mb-6">
+                      <div className="relative mx-auto w-64 h-48 bg-black rounded-lg overflow-hidden">
+                        <video 
+                          ref={videoRef}
+                          autoPlay 
+                          playsInline 
+                          muted
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 border-2 border-blue-500 rounded-lg">
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-blue-500 rounded-lg animate-pulse"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-xs mx-auto transition-all duration-300 mb-4">Pointez la caméra vers le QR code de paiement</p>
+                    
+                    <div className="flex gap-3 justify-center">
+                      <button
+                        onClick={() => {
+                          // Simuler la détection d'un QR code pour test
+                          processQRPayment('DEMO_QR_PAYMENT_' + Date.now());
+                        }}
+                        className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all duration-300 text-sm"
+                      >
+                        Simuler QR détecté
+                      </button>
+                      <button
+                        onClick={stopQRScanner}
+                        className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all duration-300 text-sm"
+                      >
+                        Annuler
+                      </button>
+                    </div>
+                  </div>
+                ) : qrScanResult ? (
+                  <div className="text-center py-6 bg-gradient-to-b from-green-50 to-green-100 dark:from-green-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-green-200 dark:border-green-800/50 shadow-sm transition-all duration-300">
+                    <div className="mb-6">
+                      <div className="relative">
+                        <CheckCircle size={64} className="mx-auto text-green-600 dark:text-green-400 transition-all duration-300" />
+                      </div>
+                    </div>
+                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">QR Code détecté !</p>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-xs mx-auto transition-all duration-300">Traitement du paiement en cours...</p>
+                  </div>
+                ) : qrError ? (
+                  <div className="text-center py-6 bg-gradient-to-b from-red-50 to-red-100 dark:from-red-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-red-200 dark:border-red-800/50 shadow-sm transition-all duration-300">
+                    <div className="mb-6">
+                      <div className="relative">
+                        <AlertCircle size={64} className="mx-auto text-red-600 dark:text-red-400 transition-all duration-300" />
+                      </div>
+                    </div>
+                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">Erreur</p>
+                    <p className="text-red-600 dark:text-red-400 max-w-xs mx-auto transition-all duration-300 mb-4">{qrError}</p>
+                    
+                    <div className="flex gap-3 justify-center">
+                      <button
+                        onClick={startQRScanner}
+                        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 text-sm flex items-center gap-2"
+                      >
+                        <Camera size={16} />
+                        Réessayer
+                      </button>
+                      <button
+                        onClick={() => setPaymentMethod(null)}
+                        className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-all duration-300 text-sm"
+                      >
+                        Retour
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800 rounded-lg border-[0.5px] border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300">
+                    <div className="mb-6">
+                      <div className="relative">
+                        <QrCode size={64} className="mx-auto transition-all duration-300" style={{ color: colors.accent }} />
+                      </div>
+                    </div>
+                    <p className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200 transition-all duration-300">Scanner QR Code</p>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-xs mx-auto transition-all duration-300 mb-4">Activez la caméra pour scanner un QR code de paiement</p>
+                    
+                    <button
+                      onClick={startQRScanner}
+                      className="px-6 py-3 rounded-lg text-white font-medium hover:opacity-90 transition-all duration-300 flex items-center gap-2 mx-auto"
+                      style={{ backgroundColor: colors.accent }}
+                    >
+                      <Camera size={20} />
+                      Activer la caméra
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : paymentMethod === 'cash' ? (
               <div className="space-y-6">
                 {paymentMethod && (
                   <button 
