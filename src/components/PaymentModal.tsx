@@ -315,8 +315,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
         </div>
 
         <div className="p-3">
-          {/* Masquer les informations de fidélité lorsque la calculatrice est ouverte */}
-          {!showCalculator && renderLoyaltyInfo()}
+          {/* Masquer les informations de fidélité lorsque la calculatrice est ouverte ou en mode QR */}
+          {!showCalculator && paymentMethod !== 'qr' && renderLoyaltyInfo()}
 
           {!paymentMethod ? (
             <div className="space-y-4">
